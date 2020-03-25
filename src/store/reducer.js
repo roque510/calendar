@@ -62,6 +62,10 @@ const reducer = (state = initialState , action ) => {
     if (action.type === 'DELETE_REMINDER'){
         newState.reminders[action.payload.mapDay].splice(action.payload.index,1);
     }
+
+    if (action.type === 'DELETE_ALL_REMINDER'){
+        delete newState.reminders[action.payload];
+    }
     
     
 

@@ -40,6 +40,7 @@ function template() {
           </div>
         </div> 
         {
+          
           this.state.calendar.map( (e,index) => {
             //amount of weeks
             return (              
@@ -54,13 +55,30 @@ function template() {
                           {                        
                             day.date()                        
                           }
-                        </div>                        
+                        </div>
+
+                        {
+                          Object.keys(this.props.reminders).map(mapDay => {
+                            console.log('dsfff', this.props.reminders[mapDay].length )
+                            return (moment(day).format("DD/MM/YYYY") === mapDay)?
+                            (
+                              <div className="pointer" style={{display:"absolute",marginLeft:'30px',color:'red'}} onClick={() => this.deleteDialog(day)}>
+                                <i className="material-icons" style={{fontSize:'20px'}}>
+                                delete_forever
+                                </i>
+                              </div>
+                            ):null
+                          })
+                        }
+                        
+                                             
                         <div className="pointer" onClick={() => this.openDialog(day)}>
                         <i className="material-icons">
                         add_box
                         </i>
                         </div>
                       </div>
+
                       
 
                       {

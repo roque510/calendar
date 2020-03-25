@@ -101,6 +101,29 @@ export class Home extends React.Component {
     })
   }
   
+
+  deleteDialog(day){
+    Swal.fire({
+      title: "Warning!",
+      text: `Are you sure you want to delete all reminders on ${moment(day).format('MMMM')} ${day.date()}? `,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sure!'
+    }).then((result) => {
+      let color = 'blue';
+      if (result.value) {
+        this.props.deleteAllReminders(moment(day).format("DD/MM/YYYY"));
+        this.Toast.fire({
+          type: 'success',
+          title: 'All reminders deleted correctly'
+        });
+        this.forceUpdate();
+      }
+    })
+  }
+
   openDialog(day){
     const ordered = {};
     let objSorted = Object.keys(time).sort().forEach(function(key,index) {
@@ -328,7 +351,8 @@ const mapDispachToProps = (dispach) => {
   return {
     addReminder: (e) => dispach({type:'ADD_REMINDER',payload:e}),
     editReminder: (e) => dispach({type:'EDIT_REMINDER',payload:e}),
-    deleteReminder: (e) => dispach({type:'DELETE_REMINDER',payload:e})
+    deleteReminder: (e) => dispach({type:'DELETE_REMINDER',payload:e}),
+    deleteAllReminders: (e) => dispach({type:'DELETE_ALL_REMINDER',payload:e})
   }
 }
 
