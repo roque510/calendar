@@ -33,10 +33,13 @@ const reducer = (state = initialState , action ) => {
         //push new items
         
         if(action.payload.title.length < 31) {
-            newState.reminders[action.payload.date] = newState.reminders[action.payload.date] || [];
-            newState.reminders[action.payload.date].push({time:action.payload.time,title:action.payload.title,color:action.payload.color,sort:action.payload.sort,city:action.payload.city,weather:action.payload.weather});
-            // newState.reminders[action.payload.date].title = action.payload.title;
-            newState.reminders[action.payload.date] = newState.reminders[action.payload.date].sort((a,b)=>a.sort-b.sort);
+            console.log('aaiiaia',action.payload.city);
+            if(action.payload.city?.length > 0) {
+                newState.reminders[action.payload.date] = newState.reminders[action.payload.date] || [];
+                newState.reminders[action.payload.date].push({time:action.payload.time,title:action.payload.title,color:action.payload.color,sort:action.payload.sort,city:action.payload.city,weather:action.payload.weather});
+                // newState.reminders[action.payload.date].title = action.payload.title;
+                newState.reminders[action.payload.date] = newState.reminders[action.payload.date].sort((a,b)=>a.sort-b.sort);
+            }
         }
         
     }

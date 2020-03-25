@@ -15,6 +15,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 const addReminder = () => ({type:"ADD_REMINDER",payload:{"date":"12/03/2020","title":"test","time":"00:30 AM","color":"teal","city":"Los Angeles","sort":1,"weather":{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}}})
 const addReminderWithLongTittle = () => ({type:"ADD_REMINDER",payload:{"date":"12/03/2020","title":"1234567890123456789012345678901","time":"00:30 AM","color":"teal","city":"Los Angeles","sort":1,"weather":{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}}})
+const addReminderWithNoCity = () => ({type:"ADD_REMINDER",payload:{"date":"12/03/2020","title":"1234567890123456789012345678901","time":"00:30 AM","color":"teal","city":null,"sort":1,"weather":{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}}})
 
 describe('=== HOME TESTS ===',()=>{    
     const initialState = {
@@ -66,6 +67,11 @@ describe('=== HOME TESTS ===',()=>{
         let ans = reducer(initialState , addReminderWithLongTittle() );
         expect(Object.keys(ans.reminders).length).toBeLessThan(2);
     })
+
+    it('+++ Check if City is added ', () => {
+        let ans = reducer(initialState , addReminderWithNoCity() );
+        expect(Object.keys(ans.reminders).length).toBe(1);
+    });
 
       
 });

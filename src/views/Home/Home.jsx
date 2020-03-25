@@ -59,7 +59,6 @@ function template() {
 
                         {
                           Object.keys(this.props.reminders).map(mapDay => {
-                            console.log('dsfff', this.props.reminders[mapDay].length )
                             return (moment(day).format("DD/MM/YYYY") === mapDay)?
                             (
                               <div className="pointer" style={{display:"absolute",marginLeft:'30px',color:'red'}} onClick={() => this.deleteDialog(day)}>
