@@ -3,8 +3,8 @@
 */
 .wrapper{
     top:10%;
-    position: absolute;
-    bottom:20%;
+    position: relative;
+    padding: 20px;
 }
 
 .pointer {
