@@ -43,7 +43,6 @@ const reducer = (state = initialState , action ) => {
     if (action.type === 'EDIT_REMINDER'){
         
         const newDate = moment(action.payload.date, "YYYY-MM-DD").format("DD/MM/YYYY");
-        console.log('edi', action.payload.date);
 
         newState.reminders[newDate] = newState.reminders[newDate] || [];
         //first we delete
@@ -54,7 +53,7 @@ const reducer = (state = initialState , action ) => {
         newState.reminders[newDate].push({time:action.payload.ntime,title:action.payload.title,city:action.payload.city,color:action.payload.color,sort:action.payload.sort,weather:action.payload.weather});
         // newState.reminders[action.payload.date].title = action.payload.title;
         
-        newState.reminders[newDate] = newState.reminders[newDate].sort((a, b) => (a.sort < b.sort) ? 1 : -1);
+        newState.reminders[newDate] = newState.reminders[newDate].sort((a,b)=>a.sort-b.sort);
 
         // newState.reminders[action.payload.mapDay][action.payload.index] = {time:action.payload.ntime,title:action.payload.title,color:action.payload.color,sort:action.payload.sort};
         // newState.reminders[action.payload.date].title = action.payload.title;

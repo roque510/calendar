@@ -19,7 +19,7 @@ class App extends Component {
           </li>          
         </ul>
           
-        <div className="container d-flex">
+        <div className="container d-flex justify-content-center">
           <Route path="/" exact component={Home} />
         </div>
           <Route path="/about/" component={About} />
