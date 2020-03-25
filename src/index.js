@@ -4,9 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from 'react-redux'
+import reducer from './store/reducer';
+
+import { createStore } from 'redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
+
+const store = createStore(reducer, /* preloadedState, */ devToolsEnhancer(
+  // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+));
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>    
   </React.StrictMode>,
   document.getElementById('root')
 );
